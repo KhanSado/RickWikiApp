@@ -1,8 +1,8 @@
 package io.github.bersoncrios.rickpedia.views
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+
         binding.rvChars.setHasFixedSize(true)
         binding.rvChars.layoutManager = LinearLayoutManager(this)
 
@@ -34,7 +35,17 @@ class MainActivity : AppCompatActivity() {
             charList.let { charList ->
                 adapter = CharAdapter(this, charList,
                     CharAdapter.OnClickListener { char ->
-                        Toast.makeText(applicationContext, char.url, Toast.LENGTH_SHORT).show()
+                        val mIntent = Intent(this, DetailActivity::class.java)
+                        val mBundle = Bundle()
+                        mBundle.putString("name", char.name)
+                        mBundle.putString("gender", char.gender)
+                        mBundle.putString("species", char.species)
+                        mBundle.putString("status", char.status)
+                        mBundle.putString("location", char.location.name)
+                        mBundle.putString("origin", char.origin.name)
+                        mBundle.putString("image", char.image)
+                        mIntent.putExtras(mBundle)
+                        startActivity(mIntent)
                     }
                 )
                 binding.rvChars.adapter = adapter
