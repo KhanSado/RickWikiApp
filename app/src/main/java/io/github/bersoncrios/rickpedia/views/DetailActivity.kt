@@ -30,11 +30,36 @@ class DetailActivity : AppCompatActivity() {
         binding.tvOrigin.text = origin
         binding.tvSpecie.text = species
 
+        when (status) {
+            "Alive" -> binding.ivStatus.setImageDrawable(
+                resources.getDrawable(
+                    R.drawable.status_alive,
+                    null
+                )
+            )
+            "Dead" -> binding.ivStatus.setImageDrawable(
+                resources.getDrawable(
+                    R.drawable.status_death,
+                    null
+                )
+            )
+            "unknow" -> binding.ivStatus.setImageDrawable(
+                resources.getDrawable(
+                    R.drawable.status_unknow,
+                    null
+                )
+            )
+        }
+
         Glide
             .with(this)
             .load(image)
-            .centerCrop()
+            .fitCenter()
             .placeholder(R.drawable.no_image)
             .into(binding.imageView)
+
+        binding.back.backBtn.setOnClickListener {
+            finish()
+        }
     }
 }
