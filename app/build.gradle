@@ -1,0 +1,94 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'io.github.bersoncrios.rickpedia'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "io.github.bersoncrios.rickpedia"
+        minSdk 28
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+    dataBinding {
+        enabled true
+    }
+}
+
+def retrofitVersion = '2.8.0'
+def coroutinesVersion = "1.6.4"
+def lifeCycleVersion = "2.5.1"
+def mockkVersion = "1.13.4"
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    //ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
+    //LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycleVersion"
+
+    //paging
+    implementation 'androidx.paging:paging-common-ktx:3.1.1'
+    implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
+
+    //Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
+
+    // Room
+    implementation "androidx.room:room-runtime:2.5.0"
+    testImplementation 'junit:junit:4.12'
+    kapt "androidx.room:room-compiler:2.5.0"
+
+    // Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.5.0"
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.15.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
+
+    // Mockk
+    testImplementation "io.mockk:mockk:${mockkVersion}"
+
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
