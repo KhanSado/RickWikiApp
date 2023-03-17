@@ -2,6 +2,7 @@ package io.github.bersoncrios.rickpedia.views
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -52,5 +53,12 @@ class MainActivity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
             }
         }
+
+        charViewModel.charById.observe(this) { char ->
+            char.let { char ->
+                Log.d("Buscando o ID 23", "onCreate: ${char}")
+            }
+        }
+
     }
 }
