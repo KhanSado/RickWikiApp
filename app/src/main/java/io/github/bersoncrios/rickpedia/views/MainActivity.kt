@@ -60,5 +60,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        charViewModel.charsDB.observe(this) {
+            it.let {
+                Log.d("Lista do banco", "onCreate: $it")
+            }
+        }
     }
 }

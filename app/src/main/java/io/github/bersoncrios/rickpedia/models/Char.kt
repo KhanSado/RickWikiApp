@@ -3,20 +3,25 @@ package io.github.bersoncrios.rickpedia.models
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.gson.annotations.SerializedName
 import io.github.bersoncrios.rickpedia.R
 
+@Entity(tableName = "char")
 data class Char(
+
+    @SerializedName("id")
+    @PrimaryKey
+    val id: Int,
     @SerializedName("created")
     val created: String,
-    @SerializedName("episode")
-    val episode: List<String>,
+//    @SerializedName("episode")
+//    val episode: List<String>,
     @SerializedName("gender")
     val gender: String,
-    @SerializedName("id")
-    val id: Int,
     @SerializedName("image")
     val image: String,
     @SerializedName("location")

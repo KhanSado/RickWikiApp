@@ -74,7 +74,6 @@ dependencies {
 
     // Room
     implementation "androidx.room:room-runtime:2.5.0"
-    testImplementation 'junit:junit:4.12'
     kapt "androidx.room:room-compiler:2.5.0"
 
     // Kotlin Extensions and Coroutines support for Room
@@ -87,6 +86,8 @@ dependencies {
     // Mockk
     testImplementation "io.mockk:mockk:${mockkVersion}"
 
+    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
